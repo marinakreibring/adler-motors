@@ -9,9 +9,9 @@
         <%- messages() %>
 
             <% if (errors) { %>
-                <ul class="notice">
+                <ul>
                     <% errors.array().forEach(error=> { %>
-                        <li>
+                        <li class="notice">
                             <%= error.msg %>
                         </li>
                         <% }) %>

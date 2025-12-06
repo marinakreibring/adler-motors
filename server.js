@@ -16,9 +16,9 @@ const utilities = require("./utilities/")
 const session = require("express-session")
 const pool = require ('./database')
 const accountRoute = require("./routes/accountRoute")
+const reviewRoute = require("./routes/reviewRoute"); // for week 6 enhancement
 const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
-
 
 // for intentional error
 const intentionalErrorRoute = require("./routes/intentionalError");
@@ -38,6 +38,8 @@ const intentionalErrorRoute = require("./routes/intentionalError");
   name: 'sessionId',
 }))
 
+
+
 // Express Messages Middleware
 app.use(require('connect-flash')())
 app.use(function(req, res, next){
@@ -54,6 +56,8 @@ app.use(cookieParser())
 
 // JWT Check Middleware
 app.use(utilities.checkJWTToken)
+
+
 
 /* ***********************
  * View Engine and Templates
@@ -74,6 +78,9 @@ app.get("/", utilities.handleErrors(baseController.buildHome));
 
 // Inventory routes
 app.use("/inv", inventoryRoute);
+
+// week 6 enhancement
+app.use("/reviews", reviewRoute);
 
 // Account route
 app.use("/account", accountRoute);

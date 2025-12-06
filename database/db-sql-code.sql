@@ -252,3 +252,12 @@ UPDATE inventory
 SET inv_image = replace(inv_image, '/images/', '/images/vehicles/'),
 inv_thumbnail = replace(inv_thumbnail, '/images/', '/images/vehicles/');
 
+-- week 6 enhancement
+CREATE TABLE IF NOT EXISTS public.reviews (
+  review_id SERIAL PRIMARY KEY,
+  vehicle_id INTEGER REFERENCES public.inventory(inv_id) ON DELETE CASCADE,
+  client_id INTEGER REFERENCES public.account(account_id) ON DELETE SET NULL,
+  rating SMALLINT NOT NULL CHECK (rating BETWEEN 1 AND 5),
+  comment TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);

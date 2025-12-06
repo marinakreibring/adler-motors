@@ -7,9 +7,9 @@
         <%- messages() %>
 
             <% if (errors) { %>
-                <ul class="notice">
+                <ul>
                     <% errors.array().forEach(error=> { %>
-                        <li>
+                        <li class="notice">
                             <%= error.msg %>
                         </li>
                         <% }) %>
@@ -19,7 +19,7 @@
                     <div class="account-update-container">
 
                         <!-- Account Information Update Form -->
-                        <div class="update-section">
+                        <div>
                             <h2>Update Account Information</h2>
                             <form id="updateAccountForm" class="login-box" action="/account/update" method="post">
 
@@ -46,7 +46,7 @@
                         </div>
 
                         <!-- Password Change Form -->
-                        <div class="update-section">
+                        <div>
                             <h2>Change Password</h2>
                             <p class="footnote">Enter a new password to change your current password.</p>
                             <h3>Password Requirements:</h3> 

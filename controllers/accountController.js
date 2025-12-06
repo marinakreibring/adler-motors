@@ -144,7 +144,7 @@ async function buildAccountManagement(req, res, next) {
 /* ****************************************
  *  Deliver account update view
  * *************************************** */
-async function buildAccountUpdate (req, res, next) {
+async function buildAccountUpdate (req, res) {
   const account_id = parseInt(req.params.account_id)
   let nav = await utilities.getNav()
   const accountData = await accountModel.getAccountById(account_id)
@@ -162,7 +162,7 @@ async function buildAccountUpdate (req, res, next) {
 /* ****************************************
  *  Process account update
  * *************************************** */
-async function updateAccount (req, res, next) {
+async function updateAccount (req, res) {
   let nav = await utilities.getNav()
   const {
     account_firstname,

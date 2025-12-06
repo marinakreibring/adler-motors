@@ -1,8 +1,16 @@
 // intentionalError.js for week 3 assignment
-const express = require('express');
-const router = express.Router();
-const controller = require('../controllers/intentionalErrorController');
+const express = require("express");
+const router = new express.Router();
+const intentionalErrorController = require("../controllers/intentionalErrorController");
+const utilities = require("../utilities");
 
-router.get('/intentional-error', controller.triggerError);
+// Middleware causes an error
+router.use("/", utilities.handleErrors(async (req, res, next) => {
+   // throw new Error("Middleware intentionally throwing an exception") // Comment this line to allow controller to cause the error
+    next();
+}));
+
+// Route to cause 500 type error
+router.get("/", utilities.handleErrors(intentionalErrorController.causeError));
 
 module.exports = router;

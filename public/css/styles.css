@@ -139,6 +139,13 @@ nav a:hover{
   padding-left: 0;
   font-size: clamp(0.8rem, 1vw + 0.6rem, 1rem);
 }
+#messages, #notice, .notice{
+  color: rgba(255, 0, 0, 0.7);
+  font-style: italic;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: left;
+}
 /*for error message*/
 /*I used picture as a backgroung so that it can be changed and add opacity*/
 .errormessage{

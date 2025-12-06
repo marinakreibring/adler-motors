@@ -1,5 +1,6 @@
 const invModel = require("../models/inventory-model")
 const utilities = require("../utilities/")
+const reviewModel = require("../models/review-model") // for week 6 enhancement
 
 const invCont = {}
 
@@ -25,15 +26,47 @@ invCont.buildByClassificationId = async function (req, res, next) {
  * ************************** */
 invCont.buildByInvId = async function (req, res, next) {
   try {
-    const inv_id = req.params.inv_id;
-    const vehicle = await invModel.getVehicleById(inv_id);
+    // debug
+    console.log('>>> buildByInvId called — req.originalUrl:', req.originalUrl);
+    console.log('>>> req.params:', req.params);
 
-    // if not found
+    const inv_id_raw = req.params.inv_id;
+    const inv_id = Number(inv_id_raw);
+    console.log('>>> parsed inv_id (raw):', inv_id_raw, 'parsed as number:', inv_id);
+
+    if (Number.isNaN(inv_id)) {
+      return next({ status: 400, message: 'Invalid vehicle id' });
+    }
+
+    // get a vehicle
+    const vehicle = await invModel.getVehicleById(inv_id);
+    console.log('>>> vehicle from model:', vehicle);
+
     if (!vehicle) {
       return next({
         status: 404,
         message: `Vehicle with id ${inv_id} not found`,
       });
+    }
+
+    // getb reviews and ratings
+    let reviews = [];
+    let avgRating = 0;
+    let reviewCount = 0;
+    try {
+      if (reviewModel && typeof reviewModel.getReviewsByVehicleId === 'function') {
+        reviews = await reviewModel.getReviewsByVehicleId(inv_id) || [];
+      }
+      if (reviewModel && typeof reviewModel.getAverageRating === 'function') {
+        const avg = await reviewModel.getAverageRating(inv_id);
+        if (avg) {
+          avgRating = Number(avg.avg_rating) || 0;
+          reviewCount = Number(avg.review_count) || 0;
+        }
+      }
+    } catch (revErr) {
+      console.error('Error loading reviews:', revErr);
+      reviews = [];
     }
 
     // HTML from utilities
@@ -46,11 +79,16 @@ invCont.buildByInvId = async function (req, res, next) {
     const make = vehicle.inv_make;
     const model = vehicle.inv_model;
 
+    // forward the variables for partial
     res.render("inventory/detail", {
       title: `${make} ${model}`,
       nav,
       vehicle,
       vehicleHTML,
+      reviews,
+      avgRating,
+      reviewCount,
+      inv: vehicle // если partial ожидает inv — передаём alias
     });
 
   } catch (error) {
@@ -58,6 +96,7 @@ invCont.buildByInvId = async function (req, res, next) {
     next(error);
   }
 };
+
 
 /* ***************************
  *  Build vehicle management view (week 4)

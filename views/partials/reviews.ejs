@@ -1,0 +1,39 @@
+<!--Week 6 enhancement -->
+
+<section class="register-box">
+  <h3>Reviews (<%= reviewCount %>) — Average: <%= avgRating %>/5</h3>
+
+  <% if (reviews && reviews.length) { %>
+    <ul class="login-form">
+      <% reviews.forEach(r => { %>
+        <li class="review-item">
+          <strong><%= r.account_firstname ? (r.account_firstname + ' ' + (r.account_lastname||'')) : 'Anonymous' %></strong>
+          <span class="rating">Rating: <%= r.rating %>/5</span>
+          <time><%= new Date(r.created_at).toLocaleString() %></time>
+          <p><%= r.comment %></p>
+        </li>
+      <% }) %>
+    </ul>
+  <% } else { %>
+    <p>No reviews yet. Be the first to review!</p>
+  <% } %>
+
+  <% if (locals.accountData) { %>
+    <form action="/reviews/add" method="POST" class="login-form">
+      <input type="hidden" name="vehicle_id" value="<%= inv.inv_id %>">
+      <label for="rating">Rating</label>
+      <select name="rating" id="rating" required>
+        <option value="">Choose</option>
+        <% for (let i=5;i>=1;i--) { %>
+          <option value="<%= i %>"><%= i %></option>
+        <% } %>
+      </select>
+      <label for="comment">Comment</label>
+      <textarea name="comment" id="comment" maxlength="2000" rows="4"></textarea>
+      <button type="submit" class="btn-login">Submit review</button>
+    </form>
+  <% } else { %>
+    <p><a href="/account/login">Log in</a> to leave a review.</p>
+  <% } %>
+</section>
+

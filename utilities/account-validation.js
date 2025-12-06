@@ -13,7 +13,7 @@ validate.registrationRules = () => {
         .trim()
         .escape()
         .notEmpty()
-        .isLength({ min: 1 })
+        //.isLength({ min: 1 })
         .withMessage("Please provide a first name."), // on error this message is sent.
   
       // lastname is required and must be string
@@ -21,7 +21,7 @@ validate.registrationRules = () => {
         .trim()
         .escape()
         .notEmpty()
-        .isLength({ min: 2 })
+        //.isLength({ min: 2 })
         .withMessage("Please provide a last name."), // on error this message is sent.
   
       // valid email is required and cannot already exist in the database
@@ -155,7 +155,7 @@ validate.updateAccountRules = () => {
         const account_id = req.body.account_id
         const account = await accountModel.getAccountByEmail(account_email)
         // Check if email exists AND belongs to a different account
-        if (account && account.account_id != account_id) {
+        if (account.account_id != account_id) {
           throw new Error("Email exists. Please use a different email")
         }
       }),

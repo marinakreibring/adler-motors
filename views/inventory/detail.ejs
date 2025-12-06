@@ -5,8 +5,10 @@
   res.redirect('/')
 } %>
 
-<%# messages() %>
+<%- messages() %>
 
+<!--week 6 show reviews and rating-->
+<%- include('../partials/reviews', { reviews, avgRating, reviewCount, inv }) %>
 <!--inventory items display-->
 <div id="vehicle-detail">
   <%- vehicleHTML %>
