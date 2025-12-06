@@ -9,7 +9,6 @@
         <li class="review-item">
           <strong><%= r.account_firstname ? (r.account_firstname + ' ' + (r.account_lastname||'')) : 'Anonymous' %></strong>
           <span class="rating">Rating: <%= r.rating %>/5</span>
-          <time><%= new Date(r.created_at).toLocaleString() %></time>
           <p><%= r.comment %></p>
         </li>
       <% }) %>

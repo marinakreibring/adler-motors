@@ -320,6 +320,9 @@ input:required:invalid, input:focus:invalid {
  text-decoration: underline;
  color: black;
 }
+.review-item{
+  font-size: 1rem;
+}
 
 @media (min-width: 900px) {
   .vehicle-grid { flex-direction: row; align-items: flex-start; }
