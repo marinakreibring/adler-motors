@@ -144,7 +144,7 @@ nav a:hover{
   font-style: italic;
   font-size: 1rem;
   font-weight: bold;
-  text-align: left;
+  text-align: center;
 }
 /*for error message*/
 /*I used picture as a backgroung so that it can be changed and add opacity*/
@@ -322,6 +322,11 @@ input:required:invalid, input:focus:invalid {
 }
 .review-item{
   font-size: 1rem;
+}
+/*footer*/
+footer{
+  text-align: center;
+  padding: 1rem;
 }
 
 @media (min-width: 900px) {
