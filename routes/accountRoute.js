@@ -6,11 +6,11 @@ const accountController = require("../controllers/accountController");
 const regValidate = require('../utilities/account-validation')
 //const { route } = require("./static");
 
-// week 4 - login view
+// Login view
 router.get("/login", utilities.handleErrors(accountController.buildLogin))
 // week 4 - registration view
 router.get("/register", utilities.handleErrors(accountController.buildRegister))
-// week 4 - Process the registration data
+// Process the registration data
 router.post(
   "/register",
   regValidate.registrationRules(),
@@ -18,7 +18,7 @@ router.post(
   utilities.handleErrors(accountController.registerAccount)
 )
 
-// Process the login request - week 5
+// Process the login request 
 router.post(
   "/login",
   regValidate.loginRules(),
@@ -26,21 +26,21 @@ router.post(
   utilities.handleErrors(accountController.accountLogin)
 )
 
-// Default account route - week 5
+// Default account route 
 router.get("/", utilities.handleErrors(utilities.checkLogin), utilities.handleErrors(accountController.buildAccountManagement));
 
-// Logout route - week 5 assignment
+// Logout route 
 router.get("/logout", utilities.handleErrors(accountController.accountLogout));
 
 
 
-// Route to show account update view - week 5 assignment
+// Route to show account update view 
 router.get("/update/:account_id", 
   utilities.checkLogin, 
   utilities.handleErrors(accountController.buildAccountUpdate)
 );
 
-// Route to process account update - week 5 assignment
+// Route to process account update 
 router.post(
   "/update",
   utilities.checkLogin,
@@ -49,7 +49,7 @@ router.post(
   utilities.handleErrors(accountController.updateAccount)
 );
 
-// Route to process password change - week 5 assignment
+// Route to process password change 
 router.post(
   "/change-password",
   utilities.checkLogin,

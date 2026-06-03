@@ -137,7 +137,7 @@ async function updateInventory(
 }
 
 /* ***************************
- * Delete Inventory Item - week 5 assignment
+ * Delete Inventory Item 
  * ************************** */
 async function deleteInventoryItem(inv_id) {
   try {

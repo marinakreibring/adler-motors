@@ -122,7 +122,6 @@ validate.checkLoginData = async (req, res, next) => {
 }
 
 /*  **********************************
- *  Assignments for week 5:
  *  Account Update Validation Rules
  * ********************************* */
 validate.updateAccountRules = () => {

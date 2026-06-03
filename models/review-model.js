@@ -1,5 +1,5 @@
 /* ******************************
-* Week 6 - enhancement
+* Review Model
 ******************************* */
 const pool = require("../database");
 

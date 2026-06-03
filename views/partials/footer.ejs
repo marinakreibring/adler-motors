@@ -2,5 +2,10 @@
 let year = d.getFullYear() %>
 <footer>
     <p class="copyright">&copy; <%= year %> | Marina Kreibring | Germany</p>
+    <hr>
+    <p>Last updated: <span id="updated"></span></p> 
     <a href="http://localhost:5500/error">test error</a>
+    <script>
+        document.getElementById("updated").textContent = document.lastModified;
+    </script>
 </footer>

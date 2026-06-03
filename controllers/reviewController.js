@@ -1,5 +1,5 @@
 /* *************************
-* Week 6 - enhancement
+* Review enhancement
 ***************************/
 const reviewModel = require('../models/review-model');
 const { validationResult } = require('express-validator');

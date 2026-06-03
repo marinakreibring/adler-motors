@@ -1,5 +1,5 @@
 /* *************************
-* Week 6 - enhancement
+* Review Validation Middleware
 ***************************/
 const { body } = require('express-validator');
 

@@ -68,7 +68,7 @@ Util.buildClassificationGrid = async function(data){
 }
 
 /* **************************************
-* Build item detail view HTML - 
+* Build item detail view HTML
 * ************************************ */
 //to utilities/index.js 
 function escapeHtml(str) {
@@ -176,7 +176,7 @@ Util.checkJWTToken = (req, res, next) => {
 }
 
 /* ****************************************
- *  Check Login - week 5
+ *  Check Login
  * ************************************ */
  Util.checkLogin = (req, res, next) => {
   if (res.locals.loggedin) {
@@ -188,7 +188,7 @@ Util.checkJWTToken = (req, res, next) => {
  }
 
 /* ****************************************
- * Check account type for Employee or Admin - week 5 assignment
+ * Check account type for Employee or Admin
  * ************************************ */
 Util.checkAccountType = (req, res, next) => {
   if (res.locals.loggedin && (res.locals.accountData.account_type === 'Employee' || res.locals.accountData.account_type === 'Admin')) {

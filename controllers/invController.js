@@ -1,6 +1,6 @@
 const invModel = require("../models/inventory-model")
 const utilities = require("../utilities/")
-const reviewModel = require("../models/review-model") // for week 6 enhancement
+const reviewModel = require("../models/review-model") 
 
 const invCont = {}
 
@@ -49,7 +49,7 @@ invCont.buildByInvId = async function (req, res, next) {
       });
     }
 
-    // getb reviews and ratings
+    // get reviews and ratings
     let reviews = [];
     let avgRating = 0;
     let reviewCount = 0;
@@ -99,7 +99,7 @@ invCont.buildByInvId = async function (req, res, next) {
 
 
 /* ***************************
- *  Build vehicle management view (week 4)
+ *  Build vehicle management view 
  * ************************** */
 invCont.buildManagementView = async function(req, res, next) {
   let nav = await utilities.getNav()
@@ -206,10 +206,15 @@ invCont.addInventory = async function (req, res) {
       "notice",
       `Congratulations, you added ${inv_make} ${inv_model} to the inventory.`
     )
-    res.status(201).render("./inventory/management", {
-      title: "Vehicle Management",
-      nav,
-    })
+    const classificationSelect =
+    await utilities.buildClassificationList()
+
+  res.status(201).render("./inventory/management", {
+    title: "Vehicle Management",
+    nav,
+    classificationSelect,
+    errors: null,
+  })
   } else {
     req.flash("notice", "Sorry, adding the vehicle failed.")
     let classificationList = await utilities.buildClassificationList(classification_id)
@@ -224,7 +229,7 @@ invCont.addInventory = async function (req, res) {
 
 
 /* ***************************
- *  Return Inventory by Classification As JSON - week 5
+ *  Return Inventory by Classification As JSON 
  * ************************** */
 invCont.getInventoryJSON = async (req, res, next) => {
   const classification_id = parseInt(req.params.classification_id)
@@ -237,12 +242,12 @@ invCont.getInventoryJSON = async (req, res, next) => {
 }
 
 /* ***************************
- *  Build edit inventory view - week 5 activity
+ *  Build edit inventory view
  * ************************** */
 invCont.editInventoryView = async function (req, res, next) {
   const inv_id = parseInt(req.params.inv_id)
   let nav = await utilities.getNav()
-  const itemData = await invModel.getInventoryById(inv_id)
+  const itemData = await invModel.getVehicleById(inv_id)
   const classificationSelect = await utilities.buildClassificationList(itemData.classification_id)
   const itemName = `${itemData.inv_make} ${itemData.inv_model}`
   res.render("./inventory/edit-inventory", {
@@ -265,7 +270,7 @@ invCont.editInventoryView = async function (req, res, next) {
 }
 
 /* ***************************
- *  Update Inventory Data - week 5 activity
+ *  Update Inventory Data 
  * ************************** */
 invCont.updateInventory = async function (req, res, next) {
   let nav = await utilities.getNav()
