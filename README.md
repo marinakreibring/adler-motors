@@ -32,9 +32,6 @@ ACCESS_TOKEN_SECRET=your_secret
 ```
 Start the development server:
 
-## Screenshots
-
-(Add screenshots here later - optional)
 
 ## Live Demo
 

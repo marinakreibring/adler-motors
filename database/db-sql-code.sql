@@ -142,7 +142,7 @@ VALUES   (
     '/images/vehicles/aerocar-tn.jpg',
     700000,
     18956,
-    'Red',
+    'Yellow',
     1
   ), (
     'Monster',
@@ -153,7 +153,7 @@ VALUES   (
     '/images/vehicles/monster-truck-tn.jpg',
     150000,
     3998,
-    'purple',
+    'Yellow',
     1
   ), (
     'Cadillac',
