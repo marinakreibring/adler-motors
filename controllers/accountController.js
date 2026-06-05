@@ -5,7 +5,6 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
-
 /* ****************************************
 *  Deliver login view
 * *************************************** */
@@ -74,7 +73,6 @@ async function registerAccount(req, res) {
     })
   }
 }
-
 
 /* ****************************************
  *  Process login request

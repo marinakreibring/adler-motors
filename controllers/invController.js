@@ -20,7 +20,6 @@ invCont.buildByClassificationId = async function (req, res, next) {
   })
 }
 
-
 /* ***************************
  *  Build item detail view 
  * ************************** */
@@ -97,7 +96,6 @@ invCont.buildByInvId = async function (req, res, next) {
   }
 };
 
-
 /* ***************************
  *  Build vehicle management view 
  * ************************** */
@@ -111,8 +109,6 @@ invCont.buildManagementView = async function(req, res, next) {
     classificationSelect,
   })
 }
-
-
 
 /* ***************************
  *  Build add classification view
